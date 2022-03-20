@@ -1,24 +1,28 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { Button, Drawer, Layout, Menu } from 'antd';
-import styled from 'styled-components';
-import { Link, useLocation, matchRoutes } from 'react-router-dom';
-import { CloseOutlined, AlignLeftOutlined } from '@ant-design/icons';
-import headerList from '../../../constans/navList';
-import routerList from '../../../router';
-import Logo from '../../../components/Logo';
-import { ReduxContext } from '../../../context';
+import React, { useContext, useEffect, useMemo, useState } from "react";
+import { Button, Drawer, Layout, Menu } from "antd";
+import styled from "styled-components";
+import { Link, useLocation, matchRoutes } from "react-router-dom";
+import { CloseOutlined, AlignLeftOutlined } from "@ant-design/icons";
+import headerList from "../../../constans/navList";
+import routerList from "../../../router";
+import Logo from "../../../components/Logo";
+import { ReduxContext } from "../../../context";
 
-const MyHeader = styled(Layout.Header).attrs((props: { pcBgChangeWhite: number }) => ({
-  pcBgChangeWhite: props.pcBgChangeWhite,
-}))`
+const MyHeader = styled(Layout.Header).attrs(
+  (props: { pcBgChangeWhite: boolean }) => ({
+    pcBgChangeWhite: props.pcBgChangeWhite,
+  })
+)`
   position: fixed;
   left: 0;
   top: 0;
   right: 0;
-  background: ${props => (props.pcBgChangeWhite ? 'white' : 'transparent !important')};
+  background: ${(props) =>
+    props.pcBgChangeWhite ? "white" : "transparent !important"};
   height: 74px;
   z-index: 2;
-  ${props => (props.pcBgChangeWhite ? 'box-shadow: 0 0.5rem 1rem rgb(0,0,0,0.01);' : '')};
+  ${(props) =>
+    props.pcBgChangeWhite ? "box-shadow: 0 0.5rem 1rem rgb(0,0,0,0.01);" : ""};
   transition: all 0.5s;
 `;
 
@@ -32,7 +36,7 @@ const MyLink = styled(Link)`
   display: flex;
   flex-direction: column;
   &:hover span {
-    color: ${props => props.theme.PRIMARY} !important;
+    color: ${(props) => props.theme.PRIMARY} !important;
     transform: translateY(-100%);
   }
   & span {
@@ -40,10 +44,10 @@ const MyLink = styled(Link)`
     transition: transform 0.3s linear;
   }
   & :nth-child(2) {
-    color: ${props => props.theme.PRIMARY} !important;
+    color: ${(props) => props.theme.PRIMARY} !important;
   }
   & :nth-child(1) {
-    color: ${props => props.theme.TITLE_COLOR} !important;
+    color: ${(props) => props.theme.TITLE_COLOR} !important;
   }
 `;
 
@@ -53,7 +57,7 @@ const PCMenu = styled(Menu)`
   background: transparent !important;
   justify-content: center;
   border: 0;
-  color: ${props => props.theme.TITLE_COLOR};
+  color: ${(props) => props.theme.TITLE_COLOR};
 `;
 
 const PCMenuItem = styled(PCMenu.Item)`
@@ -74,7 +78,7 @@ const PCMenuItem = styled(PCMenu.Item)`
     border: 0 !important;
   }
   &.ant-menu-item a {
-    color: ${props => props.theme.TITLE_COLOR};
+    color: ${(props) => props.theme.TITLE_COLOR};
   }
 `;
 
@@ -116,16 +120,16 @@ const Header: React.FC<any> = () => {
     const routes = matchRoutes(routerList, location.pathname); // 返回匹配到的路由数组对象，每一个对象都是一个路由对象
     const pathArr: string[] = [];
     if (routes !== null) {
-      routes.forEach(item => {
+      routes.forEach((item) => {
         let { path } = item.route;
-        if (path === '/') {
-          path = 'home';
+        if (path === "/") {
+          path = "home";
         }
         if (path) pathArr.push(path);
       });
     }
 
-    if (pathArr.length > 1 && pathArr[0] === 'home') {
+    if (pathArr.length > 1 && pathArr[0] === "home") {
       console.error(pathArr);
       pathArr.splice(0, 1);
     }
@@ -143,10 +147,14 @@ const Header: React.FC<any> = () => {
     return null;
   }
   return (
-    <MyHeader breakpoint="lg" pcBgChangeWhite={pcBgChangeWhite}>
+    <MyHeader pcBgChangeWhite={pcBgChangeWhite}>
       {isPC ? (
-        <PCMenu theme="light" mode="horizontal" defaultSelectedKeys={defaultSelectedKeys}>
-          {headerList.map(item =>
+        <PCMenu
+          theme="light"
+          mode="horizontal"
+          defaultSelectedKeys={defaultSelectedKeys}
+        >
+          {headerList.map((item) =>
             item.isLogo ? (
               <PCMenuItem key={item.name} disabled>
                 <Logo />
@@ -158,17 +166,17 @@ const Header: React.FC<any> = () => {
                   <span>{item.title}</span>
                 </MyLink>
               </PCMenuItem>
-            ),
+            )
           )}
         </PCMenu>
       ) : (
         <MyMenuWrapper>
           <Button type="text" onClick={() => setVisible(true)}>
-            <AlignLeftOutlined style={{ fontSize: '28px' }} />
+            <AlignLeftOutlined style={{ fontSize: "28px" }} />
           </Button>
           <Logo />
-          <Button type="text" style={{ opacity: '0' }}>
-            <AlignLeftOutlined style={{ fontSize: '28px' }} />
+          <Button type="text" style={{ opacity: "0" }}>
+            <AlignLeftOutlined style={{ fontSize: "28px" }} />
           </Button>
           <LeftHeaderDrawer
             title={<Logo />}
@@ -189,7 +197,7 @@ const Header: React.FC<any> = () => {
               defaultOpenKeys={defaultOpenKeys}
               defaultSelectedKeys={defaultSelectedKeys}
             >
-              {headerList.map(item =>
+              {headerList.map((item) =>
                 item.isLogo ? null : (
                   <PhoneMenuItem key={item.name}>
                     <MyLink to={item.path}>
@@ -197,7 +205,7 @@ const Header: React.FC<any> = () => {
                       <span>{item.title}</span>
                     </MyLink>
                   </PhoneMenuItem>
-                ),
+                )
               )}
             </PhoneMenu>
           </LeftHeaderDrawer>

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import ReactDOM from 'react-dom';
-import { ThemeProvider } from 'styled-components';
-import { BrowserRouter as Router, useRoutes } from 'react-router-dom';
-import theme from './constans/theme';
-import routerList from './router';
-import GlobalStyle from './globalStyled';
-import ReduxContextProvider from './context';
+import React, { useEffect, useState } from "react";
+import ReactDOM from "react-dom";
+import { ThemeProvider } from "styled-components";
+import { BrowserRouter as Router, useRoutes } from "react-router-dom";
+import theme from "./constans/theme";
+import routerList from "./router";
+import GlobalStyle from "./globalStyled";
+import ReduxContextProvider from "./context";
 
 const App = () => {
   const [width, setWidth] = useState(document.body.clientWidth || 0);
@@ -17,16 +17,18 @@ const App = () => {
     setScrollTop(document.documentElement.scrollTop);
   };
   useEffect(() => {
-    window.addEventListener('resize', setPageWidth);
-    window.addEventListener('scroll', setPageScrollTop);
+    window.addEventListener("resize", setPageWidth);
+    window.addEventListener("scroll", setPageScrollTop);
     return () => {
-      window.removeEventListener('resize', setPageWidth);
-      window.removeEventListener('scroll', setPageScrollTop);
+      window.removeEventListener("resize", setPageWidth);
+      window.removeEventListener("scroll", setPageScrollTop);
     };
   });
   const element = useRoutes(routerList);
   return (
-    <ReduxContextProvider value={{ bodyWidth: width, scrollTop }}>{element}</ReduxContextProvider>
+    <ReduxContextProvider value={{ bodyWidth: width, scrollTop }}>
+      {element}
+    </ReduxContextProvider>
   );
 };
 
@@ -39,5 +41,5 @@ ReactDOM.render(
       </Router>
     </React.StrictMode>
   </ThemeProvider>,
-  document.getElementById('root'),
+  document.getElementById("root")
 );

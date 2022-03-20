@@ -1,0 +1,164 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true
+    }
+  },
+  "env": {
+    "browser": true,
+    "node": true,
+    "commonjs": true,
+    "es6": true
+  },
+  "extends": [
+    "airbnb",
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "plugin:compat/recommended",
+    "plugin:react/recommended",
+    "plugin:import/typescript"
+  ],
+  "plugins": [
+    "react",
+    "babel",
+    "@typescript-eslint",
+    "react-hooks",
+    "unicorn"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts",
+        "*.jsx",
+        "*.tsx"
+      ],
+      "rules": {
+        "no-shadow": "off", // 解决typescript中enum报错问题
+        "@typescript-eslint/no-shadow": [ // 解决typescript中enum报错问题
+          "error"
+        ],
+        "@typescript-eslint/no-unused-vars": [ // 取消参数检查的报警
+          2,
+          {
+            "args": "none"
+          }
+        ],
+        "no-unused-expressions": "off",
+        "@typescript-eslint/no-unused-expressions": 2 // 不允许 a && a()这种写法，只允许if(a) {a()}
+      }
+    }
+  ],
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [
+          [
+            "@",
+            "./src"
+          ]
+        ],
+        "extensions": [
+          ".ts",
+          ".tsx",
+          ".js",
+          ".jsx",
+          ".json"
+        ]
+      }
+    }
+  },
+  "rules": {
+    "import/extensions": 0, // 取消导入时不使用文件扩展名的警告
+    "react/function-component-definition": 0, // 取消函数组件指定强制执行的函数类型的警告
+    "react/require-default-props": 0, // 取消没有给组件指定默认传参的警告
+    "react/jsx-filename-extension": [ // 取消jsx类的语法在tsx文件警告
+      1,
+      {
+        "extensions": [
+          ".tsx",
+          ".jsx"
+        ]
+      }
+    ],
+    "react/jsx-props-no-spreading": 0, // 允许{...props}这种语法糖的方式传参
+    "no-underscore-dangle": 0, // 允许悬空下划线的参数命名，如 __foo
+    "jsx-a11y/click-events-have-key-events": 0, // 取消onClick至少伴随以下一项：onKeyUp, onKeyDown, onKeyPress的警告
+    "jsx-a11y/no-static-element-interactions": 0, // 取消静态元素当有onClick事件时，需要写role的警告
+    "jsx-a11y/no-noninteractive-element-interactions": 0, // 取消元素绑定事件时，异常警告，即Non-interactive元素不应分配鼠标或键盘事件侦听器
+    "import/no-cycle": 0, // 取消函数组件循环应用的警告，即A依赖B的内容，B依赖A的内容
+    "react/display-name": 0, // 取消react函数组件需要声明displayName的警告，displayName一般就是函数组件的名称
+    "no-plusplus": 0, // 取消使用++的警告，如i++
+    "no-nested-ternary": 0, // 取消三元嵌套的警告，如 i?j?z?z():j():i():null
+    "react/prop-types": 0, // 取消react函数组件需要定义propTypes字段的定义，因为ts已经定义类型了
+    "react/jsx-no-constructed-context-values": 0, // 取消react context相关的警告，即用react的context传参时，一定要给传参值加上useMemo，防止子组件刷新
+    "import/no-extraneous-dependencies": 0, // 取消使用lodash时的警告
+    "no-param-reassign": 0, // 取消禁止重新赋值函数的传参的警告，如function(a){a++}
+    "consistent-return": 0, // 取消不指定函数返回值会报错的警告，如()=>{return;}
+    "react/no-array-index-key": 0, // 取消便利循环渲染组件时不要使用index的警告,如things.map((thing, index) => (<Hello key={index} />));
+    "react/no-unused-prop-types": 0, // 取消没有使用的传参时的警告
+    "react/destructuring-assignment": 0, // 允许使用 props
+    "no-use-before-define": 0, // 取消警告，即在定义变量之前使用它们。
+    "no-useless-escape": 0, // 取消转义字符的警告，即模板文字和正则表达式中的非特殊字符不会产生任何影响
+    "no-console": [
+      "error",
+      {
+        "allow": [
+          "error",
+          "warn"
+        ]
+      }
+    ],
+    "no-var": "error",
+    "brace-style": [
+      "error",
+      "1tbs",
+      {
+        "allowSingleLine": true
+      }
+    ],
+    "sort-imports": [
+      "error",
+      {
+        "ignoreCase": true,
+        "ignoreDeclarationSort": true,
+        "ignoreMemberSort": true,
+        "memberSyntaxSortOrder": [
+          "none",
+          "all",
+          "multiple",
+          "single"
+        ]
+      }
+    ],
+    "react-hooks/exhaustive-deps": "off",
+    // 最大长度 150
+    "max-len": [
+      "error",
+      {
+        "code": 150,
+        "ignoreComments": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreUrls": true
+      }
+    ],
+    // 最大行数 500
+    "max-lines": [
+      "error",
+      {
+        "max": 500,
+        "skipBlankLines": true,
+        "skipComments": true
+      }
+    ],
+    "import/no-anonymous-default-export": 0,
+    "semi": [
+      2,
+      "always"
+    ]
+  }
+}
