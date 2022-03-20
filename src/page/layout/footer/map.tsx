@@ -1,7 +1,7 @@
-import { Popover } from 'antd';
-import React from 'react';
-import { Map, Marker } from 'react-amap';
-import styled from 'styled-components';
+import { Popover } from "antd";
+import React from "react";
+import { Map, Marker } from "react-amap";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   width: 300px;
@@ -9,7 +9,7 @@ const Wrapper = styled.div`
 `;
 
 const MapIcon = styled.div`
-  background: url('http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/map-marker-icon.png');
+  background: url("http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/map-marker-icon.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -21,7 +21,7 @@ const MapIcon = styled.div`
 `;
 
 const CompanyMap = () => {
-  console.error('d');
+  console.error("d");
   return (
     <Wrapper>
       <Map
@@ -30,7 +30,10 @@ const CompanyMap = () => {
         zoom={15}
         dragEnable={false}
       >
-        <Marker title="千家易宅配" position={{ longitude: 118.939731, latitude: 42.261111 }}>
+        <Marker
+          title="千家易宅配"
+          position={{ longitude: 118.939731, latitude: 42.261111 }}
+        >
           <Popover placement="top" content="千家易宅配门店" visible>
             <MapIcon />
           </Popover>
