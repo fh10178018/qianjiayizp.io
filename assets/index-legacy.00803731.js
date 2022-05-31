@@ -1,1 +1,0 @@
-!function(){var e;System.register(["./vendor-legacy.eec06e65.js"],(function(t){"use strict";var r,n;return{setters:[function(e){r=e.s,n=e.R}],execute:function(){var c,u,i=r.div(e||(c=[""],u||(u=c.slice(0)),e=Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(u)}}))));t("default",(function(){return n.createElement(i,null,"Product")}))}}}))}();

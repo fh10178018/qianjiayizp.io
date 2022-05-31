@@ -1,0 +1,1 @@
+!function(){var e;System.register(["./vendor-legacy.0daeb712.js"],(function(t){"use strict";var n,r;return{setters:[function(e){n=e.s,r=e.R}],execute:function(){var c,i,u=n.div(e||(c=[""],i||(i=c.slice(0)),e=Object.freeze(Object.defineProperties(c,{raw:{value:Object.freeze(i)}}))));t("default",(function(){return r.createElement(u,null,"wanzhuandingzhi")}))}}}))}();
