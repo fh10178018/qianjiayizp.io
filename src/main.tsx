@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { ThemeProvider } from "styled-components";
-import { BrowserRouter as Router, useRoutes } from "react-router-dom";
+import { HashRouter as Router, useRoutes } from "react-router-dom";
 import theme from "./constans/theme";
 import routerList from "./router";
 import GlobalStyle from "./globalStyled";
